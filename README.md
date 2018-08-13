@@ -1,24 +1,6 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Instructions
 
-Things you may want to cover:
+Installation: clone the repository and run the server
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Usage: A user can create an account, log in and add an event. Logged in users can leave comments on events. User can modify and delete her events and profile. User can all events created by her user show page. User can signup or login using Facebook or Google in addition to conventional way.
