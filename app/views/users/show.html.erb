@@ -1,1 +1,8 @@
 <h1><%= @user.username %>'s profile </h1>
+<p>Your are logged in as <%= @user.username %></p>
+<p> Your email: <%= @user.email %></p>
+
+
+<%= form_tag user_path(@user.id), method: "delete" do %>
+    <%= submit_tag "Delete #{@user.username}" %>
+  <% end %>
