@@ -1,6 +1,11 @@
 <h1><%= @user.username %>'s profile </h1>
 <p>Your are logged in as <%= @user.username %></p>
 <p> Your email: <%= @user.email %></p>
+<br></br>
+<p><%= link_to 'Edit', edit_user_path(@user) %></p>
+<br></br>
+<p><%= link_to "Delete", @user, method: :delete, data: { confirm: "Really?" } %></p>
+<br></br>
 
 
 <%= form_tag user_path(@user.id), method: "delete" do %>
