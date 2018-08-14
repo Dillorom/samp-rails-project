@@ -15,10 +15,13 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find(params[:id])
-        @comment.delete
-        redirect_to @event
-    end
+        @event = Event.find(params[:event_id])
+        @comment = @event.comments.find(params[:id])
+        if @user == current_user
+          @event.delete
+          redirect_to root_path
+        end
+      end
 
     private
 
