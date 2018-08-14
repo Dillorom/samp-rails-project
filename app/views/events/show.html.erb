@@ -5,8 +5,7 @@
 <p>Details: <%= @event.details %></p>
 <p>Further info: <%= @event.url %></p>
 <p><% @event.image %></p>
-<p><%= link_to 'Edit', edit_event_path(@event) %></p>
-<p><%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
+<p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 
 <h2>Comments</h2>
 <ul>
@@ -23,8 +22,7 @@
             <%= f.text_area :content %>
         </p>
         <p><%= f.submit %></p>
-        <p><%= link_to "Add an Event", new_event_path(@event) %></p>
-        <p><%= link_to 'Log Out', logout_path(@user) %></p>
+        <p><%= link_to "Add an Event", new_event_path(@event) %> <%= link_to 'Log Out', logout_path(@user) %></p>
     <% end %>
 <% else %>
     <h2><%= link_to "Log in", login_path %> to comment </h2>
