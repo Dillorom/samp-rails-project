@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :events
+  has_many :comments
+  has_many :events, through: :comments
     has_secure_password
 
     validates :username, presence: true
