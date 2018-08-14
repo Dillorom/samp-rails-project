@@ -1,6 +1,8 @@
 <h1> List of events</h1>
 
 <% @events.each do |event| %>
-    <p><%= link_to (<%= event.name %>)%>, <%= event.time %>, <%= event.location %> <%= event_path(event) %></p>
+    <%= link_to event_path(event) do %>
+    <p><%= event.name %> on <%= event.time%> in <%= event.location  %> </p>
+    <% end %>
 <% end %>
 
