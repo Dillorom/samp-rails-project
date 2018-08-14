@@ -18,9 +18,16 @@
     <% @event.comments.each do |comment|%>
         <th><%= comment.user.username %> says:</th>
         <tr>
-            <td> <%= comment.content %></td>
-        </tr>
+            <td> 
+                <%= comment.content %>
+                <% if comment.user_id == current_user.id %>
+              
+                <p><%= link_to "Edit", edit_event_comment_path(@event, comment)%></p>
+            <% end %>
+            </td>
+         </tr>
     <% end %>
+   
 </table>
 
 <%= flash[:notice]%>
