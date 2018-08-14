@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
-    def new
-        @comment = Comment.new
-    end
-
     def show
         @comment = Comment.find(params[:id])
     end
 
     def create
-        @comment = Comment.create(comment_params)
+        #binding.pry
+        @event = Event.find(params[:event_id])
+        @comment = @event.comments.build(comments_params)
         if @comment.save
-            redirect_to @event.comment
+            redirect_to event_comment_path(@comment.event, @comment)
         else
             redirect_to @event
         end
