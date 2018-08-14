@@ -1,16 +1,18 @@
 class CommentsController < ApplicationController
     def show
         @comment = Comment.find(params[:id])
+        redirect_to :controller => 'events', :action => 'show'
     end
 
     def create
-        #binding.pry
+       
         @event = Event.find(params[:event_id])
         @comment = @event.comments.build(comments_params)
+        @comment.user_id = current_user.id
         if @comment.save
-            redirect_to event_comment_path(@comment.event, @comment)
+           redirect_to @event
         else
-            redirect_to @event
+           redirect_to @event, :notice => "Comment can't be empty."
         end
     end
 

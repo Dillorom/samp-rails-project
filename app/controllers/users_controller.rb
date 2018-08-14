@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
         @user = User.find(params[:id])
     end
 
@@ -34,10 +33,7 @@ class UsersController < ApplicationController
         end
     end
 
-    def destroy
-        User.find(params[:id]).destroy
-        redirect_to login_path
-    end
+    
 
     private
 

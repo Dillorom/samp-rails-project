@@ -17,16 +17,12 @@
         <% end %>
 </ul>
 
-
+<%= flash[:notice]%>
 <% if logged_in %>
     <h2>Add a Comment</h2>
-    <%= form_for([@event, @event.comments.build]) do |f| %>
-        <p>
-            <%= f.text_area :content %>
-        </p>
-        <p><%= f.submit %></p>
+        <%= render 'comment_form' %>
+       
         <p><%= link_to "Add an Event", new_event_path(@event) %> <%= link_to 'Log Out', logout_path(@user) %></p>
-    <% end %>
 <% else %>
     <h2><%= link_to "Log in", login_path %> to comment </h2>
 <% end %>
