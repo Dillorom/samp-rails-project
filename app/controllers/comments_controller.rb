@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
         if @comment.save
            redirect_to @event
         else
-           redirect_to @event#, :notice => "Comment can't be empty."
+           render 'events/show' #, :notice => "Comment can't be empty."
         end
     end
 
@@ -28,17 +28,18 @@ class CommentsController < ApplicationController
         @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
         if @comment.update(comments_params)
-            redirect to @event
+            redirect_to @event
         else
             redirect_to @event#, :notice => "Comment can't be empty."
         end
     end
 
     def destroy
+       
         @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
-        if @user == current_user
-          @event.delete
+        if @comment.user_id == current_user.id
+          @comment.delete
           redirect_to @event
         end
       end
