@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @comment = Comment.new
+    #binding.pry
     @comment.user_id = current_user.id
   end
 

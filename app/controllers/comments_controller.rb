@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     def create
        
         @event = Event.find(params[:event_id])
-        @comment = @event.comments.build(comments_params)
+        @comment = @event.comments.create(comments_params)
+        #binding.pry
         @comment.user_id = current_user.id
         if @comment.save
            redirect_to @event
@@ -20,6 +21,7 @@ class CommentsController < ApplicationController
         @event = Event.find(params[:event_id])
         #@comment = Comment.find(params[:id])
         @comment = @event.comments.find(params[:id])
+        #redirect_to :controller => 'events', :action => 'show'
     end
 
     def update
