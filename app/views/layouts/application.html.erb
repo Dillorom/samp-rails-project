@@ -12,6 +12,7 @@
       <div>
       <%= link_to "Home", root_path %>
         <% if logged_in %>
+            <%= link_to "Profile", user_path(current_user) %>
             <%= link_to 'Logout', logout_path(current_user), :method => :delete %>
             <%= link_to "Add an Event", new_event_path(@event) %>
            
