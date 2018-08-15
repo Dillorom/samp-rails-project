@@ -16,7 +16,6 @@
 <h2>Comments</h2>
 <table>
     <% @event.comments.each do |comment|%>
-        
         <th><%= comment.user.username %> says:</th>
         <tr>
             <td> 
@@ -35,7 +34,7 @@
     <% end %>
    
 </table>
-
+<h4><%= flash[:notice] %><h4>
 <% if logged_in %>
     <h2>Add a Comment</h2>
         <%= render 'comments/form' %>

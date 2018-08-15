@@ -8,12 +8,11 @@ class CommentsController < ApplicationController
        
         @event = Event.find(params[:event_id])
         @comment = @event.comments.create(comments_params)
-        #binding.pry
         @comment.user_id = current_user.id
         if @comment.save
            redirect_to @event
         else
-           render 'events/show' #, :notice => "Comment can't be empty."
+           redirect_to @event, :notice => "Content can't be blank" 
         end
     end
 
@@ -30,7 +29,7 @@ class CommentsController < ApplicationController
         if @comment.update(comments_params)
             redirect_to @event
         else
-            redirect_to @event#, :notice => "Comment can't be empty."
+            render 'events/show'
         end
     end
 
