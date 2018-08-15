@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
         @comment = @event.comments.find(params[:id])
         if @user == current_user
           @event.delete
-          redirect_to root_path
+          redirect_to @event
         end
       end
 

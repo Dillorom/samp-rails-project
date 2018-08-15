@@ -7,6 +7,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav>
+    <h1>Seattle Area Muslim Parents' guide for events</h1>
+      <div>
+        <% if logged_in %>
+            <%= link_to 'Logout', logout_path(current_user), :method => :delete %>
+            <%= link_to "Profile", user_path(@user) %>
+        <% else %>
+            <%= link_to "Login", login_path %>  
+            <%= link_to "Signup", new_user_path %>
+          <%= link_to "Login/Signup with Facebook", auth_facebook_callback_path %>
+        <% end %>
+      </div>
+    </nav>
   </head>
 
   <body>

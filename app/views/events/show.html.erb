@@ -22,7 +22,10 @@
                 <%= comment.content %>
                 <% if comment.user_id == current_user.id %>
                
-                <p><%= link_to "Edit", edit_event_comment_path(@event, comment)%></p>
+                <p>
+                    <%= link_to "Edit", edit_event_comment_path(@event, comment)%>  
+                    <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+                </p>
             <% end %>
             </td>
          </tr>
