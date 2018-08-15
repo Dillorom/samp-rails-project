@@ -17,7 +17,7 @@
             <%= link_to "Add an Event", new_event_path(@event) %>
            
         <% else %>
-            <%= link_to "Login", login_path %>  
+            <%= link_to "Login", login_path %> 
             <%= link_to "Signup", new_user_path %>
             <%= link_to('Signup/Login with Facebook!', '/auth/facebook') %>
         <% end %>
