@@ -1,3 +1,18 @@
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@event.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+ 
+    <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @event do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -11,10 +26,10 @@
     <%= f.label :time %>
     <%= f.datetime_field :time %>
     <br><br>
-    <%= f.label :url %>
+    <%= f.label "Source link (optional)" %>
     <%= f.url_field :url %>
     <br><br>
-    <%= f.label :image %>
+    <%= f.label "Picture (optional)" %>
     <%= f.text_field :image %>
     <br><br>
     <%= f.submit %>

@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
         if @comment.save
            redirect_to @event
         else
-           redirect_to @event, :notice => "Comment can't be empty."
+           redirect_to @event#, :notice => "Comment can't be empty."
         end
     end
 
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
         if @comment.update(comments_params)
             redirect to @event
         else
-            redirect_to @event, :notice => "Comment can't be empty."
+            redirect_to @event#, :notice => "Comment can't be empty."
         end
     end
 
