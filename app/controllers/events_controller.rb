@@ -7,7 +7,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @comment = Comment.new
     #binding.pry
-    @comment.user_id = current_user.id
+    if logged_in
+      @comment.user_id = current_user.id
+    end
   end
 
   def new

@@ -20,13 +20,14 @@
         <tr>
             <td> 
                 <%= comment.content %>
-                <% if comment.user_id == current_user.id %>
-               
-                <p>
-                    <%= link_to "Edit", edit_event_comment_path(@event, comment)%>  
-                    <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
-                </p>
-            <% end %>
+                <% if logged_in %>
+                    <% if comment.user_id == current_user.id %>
+                    <p>
+                        <%= link_to "Edit", edit_event_comment_path(@event, comment)%>  
+                        <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+                    </p>
+                    <% end %>
+                <% end %>
             </td>
          </tr>
     <% end %>
@@ -38,7 +39,7 @@
     <h2>Add a Comment</h2>
         <%= render 'comments/form' %>
        
-        <p><%= link_to "Add an Event", new_event_path(@event) %> <%= link_to 'Log Out', logout_path(current_user), :method => :delete %></p>
+        
 <% else %>
     <h2><%= link_to "Log in", login_path %> to comment </h2>
 <% end %>
