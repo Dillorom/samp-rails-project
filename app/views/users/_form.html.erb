@@ -1,4 +1,5 @@
 <% if @user.errors.any? %>
+<% binding.pry %>
   <div id="error_explanation">
     <h2>
       <%= pluralize(@user.errors.count, "error") %>
