@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
+    
     def show
         @comment = Comment.find(params[:id])
         redirect_to :controller => 'events', :action => 'show'
     end
 
     def create
-       
         @event = Event.find(params[:event_id])
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
@@ -18,9 +18,7 @@ class CommentsController < ApplicationController
 
     def edit
         @event = Event.find(params[:event_id])
-        #@comment = Comment.find(params[:id])
         @comment = @event.comments.find(params[:id])
-        #redirect_to :controller => 'events', :action => 'show'
     end
 
     def update
@@ -34,7 +32,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-       
         @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
         if @comment.user_id == current_user.id

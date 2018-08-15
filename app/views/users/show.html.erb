@@ -3,7 +3,7 @@
 <p> Your email: <%= @user.email %></p>
 <p>
   <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to "Delete", @user, method: :delete, data: { confirm: "Really?" } %>
+  <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" } %>
 </p>
 <br></br>
 

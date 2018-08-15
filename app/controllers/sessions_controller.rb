@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id 
-            redirect_to @user
+            redirect_to  @user
         else
-            redirect_to login_path
+            render '/sessions/new', :notice => "Username/email/password incorrect or can't be blank"
         end
 
         # @user = User.find_or_create_by(uid: auth['uid']) do |u| 
