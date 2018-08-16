@@ -11,7 +11,8 @@
     <h1>Seattle Area Muslim Parents' guide for events</h1>
       <div>
       <%= link_to "Home", root_path %>
-        <% if logged_in %>
+        <% if current_user %>
+        Signed in as <strong><%= current_user.username %></strong>!
             <%= link_to "Profile", user_path(current_user) %>
             <%= link_to 'Logout', logout_path(current_user), :method => :delete %>
             <%= link_to "Add an Event", new_event_path(@event) %>

@@ -4,9 +4,12 @@ class SessionsController < ApplicationController
     end
 
     def create
-        auth = request.env["omniauth.auth"]
-        session[:omniauth] = auth.except('extra')
-        @user = User.sign_in_from_omniauth(auth)
+        # auth = request.env["omniauth.auth"]
+        # session[:omniauth] = auth.except('extra')
+        # @user = User.sign_in_from_omniauth(auth)
+        @user = User.from_omniauth(request.env["omniauth.auth"])
+        #binding.pry
+        #user = User.from_omniauth(env["omniauth.auth"])
         session[:user_id] = @user.id
         render 'users/show', notice: "Signed In"
         
