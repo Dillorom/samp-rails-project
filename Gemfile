@@ -20,6 +20,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'dotenv-rails'
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'thin'
 
 # gem 'mini_racer', platforms: :ruby
 

@@ -13,7 +13,7 @@
 <% end %>
 <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 
-<h2>Comments</h2>
+<h3>What people say about the event?</h3>
 <table>
     <% @event.comments.each do |comment|%>
         <th><%= comment.user.username %> says:</th>
@@ -32,15 +32,12 @@
             </td>
          </tr>
     <% end %>
-   
-</table>
+ </table>
 <h4><%= flash[:notice] %><h4>
 <% if logged_in %>
-    <h2>Add a Comment</h2>
+    <p>Aks question or give advice</p>
         <%= render 'comments/form' %>
-       
-        
-<% else %>
+ <% else %>
     <p><%= link_to "Log in", login_path %> to comment </p>
 <% end %>
 

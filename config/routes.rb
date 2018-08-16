@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  get '/auth/facebook/callback' => 'sessions#create'
+  #get '/auth/facebook/callback' => 'sessions#create'
 
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
+   get 'auth/:provider/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/')
  
   root "events#index"
 

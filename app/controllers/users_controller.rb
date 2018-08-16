@@ -1,16 +1,21 @@
 class UsersController < ApplicationController
-    def self.from_omniauth(auth)
-        where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-          user.provider = auth.provider
-          user.uid = auth.uid
-          user.username = auth.info.name
-          user.oauth_token = auth.credentials.token
-          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-          user.save!
-        end
-      end
+    # before_action :set_auth
 
-      
+    # def self.from_omniauth(auth)
+    #     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+    #       user.provider = auth.provider
+    #       user.uid = auth.uid
+    #       user.username = auth.info.name
+    #       user.oauth_token = auth.credentials.token
+    #       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    #       user.save!
+    #     end
+    #   end
+
+    def index
+        @users = User.all
+    end
+
     def new
         @user = User.new
     end
@@ -45,7 +50,11 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :email, :admin, :uid, :provider, :oauth_token, :oauth_expires_at)
+        params.require(:user).permit(:username, :password, :email, :admin, :uid, :provider, :oauth_token, :oauth_expires_at, :image)
     end
+
+    # def set_auth
+    #     @auth = session[:omniauth] if session[:omniauth]
+    # end
 
 end
