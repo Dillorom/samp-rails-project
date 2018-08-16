@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_15_181023) do
+ActiveRecord::Schema.define(version: 2018_08_16_050131) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 2018_08_15_181023) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.integer "uid"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string "provider"
   end
 
 end

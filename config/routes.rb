@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#create'
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+ 
   root "events#index"
 
 end
