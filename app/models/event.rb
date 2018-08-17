@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   validates :location, presence: true
   validates :details, presence: true
 
-  scope :todays_events,  -> {where('time == ?', DateTime.now) }
+  #scope :todays_events,  -> {where('time == ?', DateTime.now) }
   scope :past_events,  -> {where('time < ?',  DateTime.now)}
   scope :future_events,  -> {where('time >= ?', DateTime.now)}
 

@@ -6,12 +6,9 @@
 <p>Further info: <%= @event.url %></p>
 <p><% @event.image %></p>
 
-<p>Only admin should see these buttons:</p>
-
-<% if logged_in && @user == current_user %>
+<% if logged_in %>
     <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 <% end %>
-<p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 
 <h3>What people say about the event?</h3>
 <table>

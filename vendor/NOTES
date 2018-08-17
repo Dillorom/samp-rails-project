@@ -3,6 +3,5 @@
 3. Scope methods do not pick every event. Need to work on time formatting.
 4. Need to get rid of UTC and adjust it to the Pacific time in event.time.
 5. Need to find an alternative to DateTime.today for todays_events scope method.
-6. Only admin should be able to edit or delete events.
-7. Clear users table from unnessasry attributes.
-8. 
+6. Only admin should be able to edit or delete events. Need to define admin? method in user model.
+
