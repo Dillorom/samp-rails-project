@@ -8,21 +8,8 @@ class Event < ActiveRecord::Base
   validates :location, presence: true
   validates :details, presence: true
 
-  # scope :upcoming, -> { where(upcoming: true) }
+  scope :todays_events,  -> {where('time == ?', DateTime.now) }
+  scope :past_events,  -> {where('time < ?',  DateTime.now)}
+  scope :future_events,  -> {where('time >= ?', DateTime.now)}
 
-  # def self.upcoming
-  #   where(self.time > Time.now)
-  # end
-
-  def self.past
-    
-    self.all.map do |event|
-      if event.time  < Time.now
-        return event
-      end
-    end
-  
-  end
-
-  
 end
