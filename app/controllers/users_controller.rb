@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        #binding.pry
         @user = User.find(params[:id])
     end
     
@@ -34,6 +35,12 @@ class UsersController < ApplicationController
             render :edit
         end
     end
+
+    # def destroy
+    #     @user = User.find(params[:id])
+    #     @user.delete
+    #     redirect_to root_path
+    # end
 
     private
 

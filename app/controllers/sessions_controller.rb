@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
     def create
-        auth = request.env["omniauth.auth"]
-        if auth
+        @auth = request.env["omniauth.auth"]
+        if @auth
             @user = User.from_omniauth(request.env["omniauth.auth"])
             session[:user_id] = @user.id
             render 'users/show', notice: "Signed In"
