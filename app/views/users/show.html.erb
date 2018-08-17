@@ -2,10 +2,18 @@
 <h1><%= @user.username %>'s profile </h1>
 <p> Your email: <%= @user.email %></p>
 <% if  !@auth %>
-<p>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= form_tag user_path(@user.id), method: "delete" do %>
+    <% if current_user.admin || current_user %>
+        <p>
+            <%= link_to 'Edit', edit_user_path(@user) %>
+            <%= form_tag user_path(@user.id), method: "delete" do %>
+                <%= submit_tag "Delete #{@user.username}" %>
+            <% end %>
+        </p>
+    <% end %>
+<% elsif%>
+ <%= @auth && current_user.admin%>
+<%= form_tag user_path(@user.id), method: "delete" do %>
     <%= submit_tag "Delete #{@user.username}" %>
-  <% end %>
-</p>
+<% end %>
+    
 <% end %>
