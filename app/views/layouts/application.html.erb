@@ -10,18 +10,16 @@
     <nav>
     <h1>Seattle Area Muslim Parents' guide for events</h1>
       <div>
-      <%= link_to "Home", root_path %>
-        <% if current_user %>
-        Signed in as <strong><%= current_user.username %></strong>!
-            <%= link_to "Profile", user_path(current_user) %>
+         <% if current_user %>
+            <p>You are signed in as <strong><%= link_to current_user.username, user_path(current_user) %></strong>!</p>
+            <%= link_to "Home", root_path %>
             <%= link_to 'Logout', logout_path(current_user), :method => :delete %>
             <%= link_to "Add an Event", new_event_path(@event) %>
-           
-        <% else %>
+         <% else %>
+            <%= link_to "Home", root_path %>
             <%= link_to "Login", login_path %> 
             <%= link_to "Signup", new_user_path %>
-            <%= link_to('Signup/Login with Facebook!', '/auth/facebook') %>
-            <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+            <%= link_to('Login with Facebook!', '/auth/facebook') %>
         <% end %>
        </div>
     </nav>

@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_auth
-
    
-
     def index
         @users = User.all
     end
