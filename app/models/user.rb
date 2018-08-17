@@ -5,7 +5,6 @@ class User < ApplicationRecord
 
     validates :username, presence: true
     validates :email, presence: true
-    #validates :password, presence: true
     #validates :email, uniqueness: true
   
   def self.from_omniauth(auth)
@@ -14,7 +13,7 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.username = auth.info.name
         user.email = auth.info.email
-        user.password_digest = auth.info.password
+        user.password_digest = SecureRandom.hex
         user.oauth_token = auth.credentials.token
         user.oauth_expires_at = Time.at(auth.credentials.expires_at)
         user.save!
