@@ -6,7 +6,8 @@
 <p>Further info: <%= @event.url %></p>
 <p><% @event.image %></p>
 
-<% if logged_in %>
+
+<% if current_user.admin %>
     <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 <% end %>
 
@@ -18,7 +19,7 @@
             <td> 
                 <%= comment.content %>
                 <% if logged_in %>
-                    <% if comment.user_id == current_user.id %>
+                    <% if comment.user_id == current_user.id || current_user.admin %>
                     <p>
                         <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
 

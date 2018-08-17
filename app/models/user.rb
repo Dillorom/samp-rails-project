@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
     validates :username, presence: true
     validates :email, presence: true
-    #validates :email, uniqueness: true
+    validates :email, uniqueness: true
   
   def self.from_omniauth(auth)
       where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    current_user.admin || @user.admin
+    current_user.admin #|| @user.admin
   end
  
 end
