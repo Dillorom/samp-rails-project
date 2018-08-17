@@ -7,6 +7,16 @@
 <% end %>
 
 <h1> Past events</h1>
+<ul>
+    <% Event.all.find do |event| %>
+        <% if event.time  < Time.now %>
+            <%= link_to event_path(event) do %>
+            <li><%= event.name %> on <%= event.time %> in <%= event.location %></li>
+            <% end %>
+        <%  end %>
+    <% end %>
+</ul>
+
 
 
 
