@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
     
+    def index
+        #@comments = Comment.all
+        @event = Event.find(params[:event_id])
+        #@comment = @event.comments.create(comments_params)
+    end
     def show
         @comment = Comment.find(params[:id])
         redirect_to :controller => 'events', :action => 'show'

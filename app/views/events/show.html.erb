@@ -12,6 +12,7 @@
 <% end %>
 
 <h3>What people say about the event?</h3>
+<p><%= link_to 'Read all comments', event_comments_path(@event) %>
 <table>
     <% @event.comments.each do |comment|%>
         <th><%= comment.user.username %> says:</th>
