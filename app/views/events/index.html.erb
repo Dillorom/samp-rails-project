@@ -1,5 +1,12 @@
 
 <h1> Today's events</h1>
+<ul>
+    <% Event.all.todays_events.find do |event| %>
+        <%= link_to event_path(event) do %>
+        <li><%= event.name %> on <%= event.time %> in <%= event.location %></li>
+        <%  end %>
+    <% end %>
+</ul>
 
 <h1> Upcoming events</h1>
 <ul>
