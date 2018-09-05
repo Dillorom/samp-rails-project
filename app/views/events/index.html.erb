@@ -3,7 +3,7 @@
 <ul>
     <% Event.all.todays_events.find do |event| %>
         <%= link_to event_path(event) do %>
-        <li><%= event.name %> on <%= event.time %> in <%= event.location %></li>
+        <li><%= event.name %> on <%= display_time(event) %> in <%= event.location %></li>
         <%  end %>
     <% end %>
 </ul>
@@ -12,7 +12,7 @@
 <ul>
     <% Event.all.future_events.find do |event| %>
         <%= link_to event_path(event) do %>
-        <li><%= event.name %> on <%= event.time %> in <%= event.location %></li>
+        <li><%= event.name %> on <%= display_time(event) %> in <%= event.location %></li>
         <%  end %>
     <% end %>
 </ul>
@@ -21,7 +21,7 @@
 <ul>
     <% Event.all.past_events.find do |event| %>
         <%= link_to event_path(event) do %>
-        <li><%= event.name %> on <%= event.time %> in <%= event.location %></li>
+        <li><%= event.name %> on <%= display_time(event) %> in <%= event.location %></li>
         <%  end %>
     <% end %>
 </ul>
@@ -29,7 +29,7 @@
 <h1> See all events </h1>
 <% @events.each do |event| %>
     <%= link_to event_path(event) do %>
-    <p><%= event.name %> on <%= event.time%> in <%= event.location  %> </p>
+    <p><%= event.name %> on <%= display_time(event)%> in <%= event.location  %> </p>
     <% end %>
 <% end %>
 

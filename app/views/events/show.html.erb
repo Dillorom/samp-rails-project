@@ -1,6 +1,6 @@
 <h1>You are viewing <%= @event.name%> event</h1>
 <p>What: <%= @event.name %></p>
-<p>When: <%= @event.time %><p>
+<p>When: <%= display_time(@event) %><p>
 <p>Where: <%= @event.location %></p>
 <p>Details: <%= @event.details %></p>
 <p>Further info: <%= @event.url %></p>
@@ -10,6 +10,8 @@
 <% if logged_in && current_user.admin %>
     <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 <% end %>
+
+<%= render 'rsvps/form' %> 
 
 <h3>What people say about the event?</h3>
 <p><%= link_to 'Read all comments', event_comments_path(@event) %>
