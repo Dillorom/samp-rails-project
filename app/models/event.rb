@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   has_many :comments
   has_many :users, through: :comments
+  has_many :rsvps
+  has_many :attending_users, through: :rsvps, :source => :user
   
   validates :name, presence: true
   validates :name, uniqueness: true
