@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :events do
     resources :comments
+    resources :rsvps, only: [:new, :destroy]
   end
 
   namespace :admin do
