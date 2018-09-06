@@ -1,0 +1,8 @@
+<% if logged_in %>
+    <h1>List of attendees</h1>
+<ol>
+        <% @rsvps.each do |rsvp| %>
+            <li> <%= link_to rsvp.attending   %></li>
+        <% end %>
+    </ol>
+<% end %>

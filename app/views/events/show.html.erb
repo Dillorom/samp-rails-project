@@ -10,15 +10,8 @@
 <% if logged_in && current_user.admin %>
     <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 <% end %>
-<% binding.pry %>
-<% if @rsvp %>
-  <%= form_for current_user, @rsvp do |f| %>
-    <%= f.hidden_field :event_id %>
-    <%= f.radio_button :attending, true %>
-    <%= f.radio_button :attending, false %>
-    <%= f.submit %>
-  <% end %>
-<% end %> 
+
+<%= link_to 'RSVP here', new_event_rsvp_path(@rsvp) %>
 
 <h3>What people say about the event?</h3>
 <p><%= link_to 'Read all comments', event_comments_path(@event) %>
