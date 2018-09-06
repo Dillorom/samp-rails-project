@@ -4,7 +4,7 @@ class RsvpsController < ApplicationController
   
   
     def new
-        binding.pry
+    #binding.pry
       @events = Event.all
       @event = Event.find_by_id(params[:event_id])
       @rsvp = Rsvp.create(user_id: @user.id, event_id: @event.id)
@@ -12,16 +12,31 @@ class RsvpsController < ApplicationController
     end
   
     def create
-    end
+        @rsvp = Rsvp.new rsvp_params
+        @rsvp.user = current_user
+        if @rsvp.save
+            redirect to @rsvp
+        else
+            redirect to @event
+        end
+      end
+    
+      def update
+        if @rsvp.update_attributes rsvp_params
+            redirect to @rsvp
+        else
+            redirect to @event
+        end
+      end
   
     def destroy
       @rsvp = Rsvp.find_by_id(params[:id])
       @rsvp.destroy
-      redirect_to user_path
+      redirect_to @event
     end
 
     private
-    def params
+    def rsvp_params
         params.require(:rsvp).permit(:user_id, :event_id, :id)
     end
 end

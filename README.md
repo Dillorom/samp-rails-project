@@ -11,10 +11,13 @@ Concepts I implemented on this project are:
 5. Class methods to filter data from the database.
 
 * Installation guide
+
 To install the application, fork and clone the repo and run it on the server. 
 
 * Contributors guide 
+
 Any comments and feedback for improvements would be appreciated. 
 
 * Licensing statement 
+
 This project has been licensed under the MIT open source license.
