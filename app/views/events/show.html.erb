@@ -10,8 +10,14 @@
 <% if logged_in && current_user.admin %>
     <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
 <% end %>
+<% if logged_in %>
 
-<%= link_to 'RSVP here', new_event_rsvp_path(@rsvp) %>
+    <% if @rsvp.user_id == current_user.id %>
+        <p>Your are going to this event. <%= link_to "Edit your response", edit_event_rsvp_path(@event) %></p>
+    <% else %>
+        <%= link_to 'RSVP here', new_event_rsvp_path(@rsvp) %>
+    <% end %>
+<% end %>
 
 <h3>What people say about the event?</h3>
 <p><%= link_to 'Read all comments', event_comments_path(@event) %>

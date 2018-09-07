@@ -1,15 +1,17 @@
 class RsvpsController < ApplicationController
     before_action :logged_in
+    before_action :authenticate_user!
     
     def index 
         @rsvps = Rsvp.all
+        @event = Event.find(params[:event_id])
     end
 
     def show
         #binding.pry
         @event = Event.find_by_id(params[:event_id])
-        @rsvp = @event.rsvps.find(params[:id])
-
+        #@rsvp = @event.rsvps.find(params[:id])
+        
     end
 
     def new
@@ -25,9 +27,9 @@ class RsvpsController < ApplicationController
         @rsvp = @event.rsvps.build(rsvp_params)     
         @rsvp.user = current_user
         if @rsvp.save
-            redirect to @rsvp
+            redirect_to @rsvp
         else
-            redirect to @event
+            redirect_to @event
         end
       end
 
@@ -38,18 +40,20 @@ class RsvpsController < ApplicationController
     
       def update
         # research rails update attributes methods
+        @event = Event.find_by_id(params[:event_id])
+        @rsvp = @event.rsvps.find(params[:id])
         if @rsvp.update_attributes rsvp_params
-            redirect to @rsvp
+            redirect_to @rsvp
         else
-            redirect to @event
+            redirect_to @event
         end
       end
   
-    def destroy
-      @rsvp = Rsvp.find_by_id(params[:id])
-      @rsvp.destroy
-      redirect_to @event
-    end
+    # def destroy
+    #   @rsvp = Rsvp.find_by_id(params[:id])
+    #   @rsvp.destroy
+    #   redirect_to @event
+    # end
 
     private
     def rsvp_params

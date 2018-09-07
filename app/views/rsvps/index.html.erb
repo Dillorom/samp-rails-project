@@ -1,8 +1,19 @@
-<% if logged_in %>
-    <h1>List of attendees</h1>
-<ol>
-        <% @rsvps.each do |rsvp| %>
-            <li> <%= link_to rsvp.attending   %></li>
-        <% end %>
-    </ol>
-<% end %>
+<table>
+    <% @event.rsvps.each do |rsvp|%>
+        <th><%= link_to rsvp.user.username, user_path(current_user) %> is Going to <%= link_to @event.name, event_path(@event)%></th>
+        <tr>
+            <td> 
+               
+                <% if logged_in %>
+                    <% if rsvp.user_id == current_user.id || current_user.admin %>
+                    <p>
+                        <%= link_to "Edit your response", edit_event_rsvp_path(@event, rsvp)%> 
+
+                        
+                    </p>
+                    <% end %>
+                <% end %>
+            </td>
+         </tr>
+    <% end %>
+ </table>
