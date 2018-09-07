@@ -17,7 +17,7 @@ class RsvpsController < ApplicationController
     def new
     #binding.pry
       @event = Event.find_by_id(params[:event_id])
-      @rsvp = Rsvp.create(rsvp_params)
+      @rsvp = Rsvp.new
    
     end
   
@@ -30,9 +30,10 @@ class RsvpsController < ApplicationController
         @rsvp.user = current_user
       
         if @rsvp.save
-            #redirect_to event_rsvp_path(@rsvp) #I need to go to rsvp show page
+            #binding.pry
+            redirect_to event_rsvp_path(@event, @rsvp) 
             #redirect_to :controller => 'rsvps', :action => 'show'
-            redirect_to @rsvp
+            #redirect_to @event
             #render :action => :show
         else
             redirect_to @event
@@ -49,7 +50,7 @@ class RsvpsController < ApplicationController
         @event = Event.find_by_id(params[:event_id])
         @rsvp = @event.rsvps.find(params[:id])
         if @rsvp.update_attributes rsvp_params
-            redirect_to @rsvp
+            redirect_to event_rsvp_path(@event, @rsvp) 
         else
             redirect_to @event
         end
@@ -64,6 +65,6 @@ class RsvpsController < ApplicationController
     private
     def rsvp_params
         #binding.pry
-        params.permit(:attending)
+        params.require(:rsvp).permit(:attending)
     end
 end

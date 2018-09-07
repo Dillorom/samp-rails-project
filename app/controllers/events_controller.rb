@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @rsvp = @event.rsvps.find_or_initialize_by user: current_user if current_user
+    @rsvp = @event.rsvps.find_by(user: current_user)
     @comment = Comment.new
     if logged_in
       @comment.user_id = current_user.id

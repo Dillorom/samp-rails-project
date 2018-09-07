@@ -12,8 +12,12 @@
 <% end %>
 <% if logged_in %>
 
-    <% if @rsvp.attending == true%>
-        <p>Your are going to this event. <%= link_to "Edit your response", edit_event_rsvp_path(@event) %></p>
+    <% if @rsvp%>
+        <% if @rsvp.attending %>
+            <p>Your are going to this event. <%= link_to "Edit your response", edit_event_rsvp_path(@event, @rsvp) %></p>
+        <% else %> 
+            <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
+        <% end %>
     <% else %>
         <%= link_to 'RSVP here', new_event_rsvp_path(@event, @rsvp) %>
     <% end %>
