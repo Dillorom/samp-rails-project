@@ -1,2 +1,4 @@
 <h1> Edit your response to the event </h1>
 <%=render 'form'%>
+
+<p><%= link_to "Back to the event", event_rsvp_path(@event, @rsvp) %></p>

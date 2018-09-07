@@ -1,8 +1,12 @@
-<h3> You are going to  <%= @event.name %> </h3>
+<% if @rsvp.attending %>
+<p>Your are going to <%= @event.name %>. <%= link_to "Edit your response", edit_event_rsvp_path(@event, @rsvp) %></p>
+<% else %> 
+<p> You are not attending <%= @event.name %>. Change your mind? <%= link_to 'Let us know here', edit_event_rsvp_path(@event, @rsvp) %> </p>
+<% end %>
+<h3>Event name: <%= link_to @event.name, @event %></h3>
 <p> Remember the event details:</p>
 <p><%= @event.time %></p>
 <p><%= @event.location %></p>
  
-<p><%= link_to "Edit your response", edit_event_rsvp_path(@event, @rsvp) %></p>
 <br></br>
 <p> <%=link_to 'Check out all events', events_path %></p>
