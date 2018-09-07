@@ -10,7 +10,7 @@ class RsvpsController < ApplicationController
     def show
         #binding.pry
         @event = Event.find_by_id(params[:event_id])
-        #@rsvp = @event.rsvps.find(params[:id])
+        @rsvp = @event.rsvps.find(params[:id]) #this seems to be probelm
         
     end
 
@@ -22,12 +22,18 @@ class RsvpsController < ApplicationController
     end
   
     def create
+        #binding.pry
         @event = Event.find_by_id(params[:event_id])
         #@rsvp = @event.rsvps.new(rsvp_params.merge(user_id: @user.id, event_id: @event.id))  
-        @rsvp = @event.rsvps.build(rsvp_params)     
+        #@rsvp = @event.rsvps.create(rsvp_params) 
+        @rsvp = @event.rsvps.create(rsvp_params)
         @rsvp.user = current_user
+      
         if @rsvp.save
+            #redirect_to event_rsvp_path(@rsvp) #I need to go to rsvp show page
+            #redirect_to :controller => 'rsvps', :action => 'show'
             redirect_to @rsvp
+            #render :action => :show
         else
             redirect_to @event
         end
