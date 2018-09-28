@@ -15,7 +15,7 @@
 
 <%= form_for([@event, @comment]) do |f| %>
     <p>
-            <%= f.text_area :content %>
+            <%= f.text_area :content, placeholder: "Aks question or give advice" %>
     </p>
     <p><%= f.submit %></p>
 <% end %>

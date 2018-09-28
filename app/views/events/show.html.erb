@@ -19,35 +19,16 @@
             <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
         <% end %>
     <% else %>
-        <%= link_to 'RSVP here', new_event_rsvp_path(@event, @rsvp) %>
+        <%= button_to 'RSVP here', new_event_rsvp_path(@event, @rsvp) %>
     <% end %>
 <% end %>
 <p><%= link_to "See who else is attending", event_rsvps_path(@event, @rsvp) %></p>
-
-<h3>What people say about the event?</h3>
-<p><%= link_to 'Read all comments', event_comments_path(@event) %>
-<table>
-    <% @event.comments.each do |comment|%>
-        <th><%= comment.user.username %> says:</th>
-        <tr>
-            <td> 
-                <%= comment.content %>
-                <% if logged_in %>
-                    <% if comment.user_id == current_user.id || current_user.admin %>
-                    <p>
-                        <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
-
-                        <%= link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-                    </p>
-                    <% end %>
-                <% end %>
-            </td>
-         </tr>
-    <% end %>
- </table>
+<div id="comments">    
+    <%= render 'comments/comments'%>
+</div>
+ <p><%= link_to 'Read all comments', event_comments_path(@event) %>
 <h4><%= flash[:notice] %><h4>
 <% if logged_in %>
-    <p>Aks question or give advice</p>
         <%= render 'comments/form' %>
  <% else %>
     <p><%= link_to "Log in", login_path %> to comment </p>
