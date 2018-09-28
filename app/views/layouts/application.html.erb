@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampRailsProject</title>
+    <title>Seattle Kids Events</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -22,10 +22,12 @@
             <%= link_to('Login with Facebook!', '/auth/facebook') %>
         <% end %>
        </div>
+       <p class="info" id="weather"></p>
     </nav>
   </head>
 
   <body>
     <%= yield %>
   </body>
+  <script src="weather.js"></script>
 </html>
