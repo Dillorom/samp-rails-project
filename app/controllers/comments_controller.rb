@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
+    before_action :set_event, only: [:index, :create, :edit, :update, :destroy]
     
     def index
         #@comments = Comment.all
-        @event = Event.find(params[:event_id])
         #@comment = @event.comments.create(comments_params)
     end
     def show
@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @event = Event.find(params[:event_id])
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
@@ -22,12 +21,10 @@ class CommentsController < ApplicationController
     end
 
     def edit
-        @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
     end
 
     def update
-        @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
         if @comment.update(comments_params)
             redirect_to @event
@@ -37,7 +34,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @event = Event.find(params[:event_id])
         @comment = @event.comments.find(params[:id])
         if @comment.user_id == current_user.id
           @comment.delete
@@ -46,6 +42,10 @@ class CommentsController < ApplicationController
       end
 
     private
+
+    def set_event
+        @event = Event.find(params[:event_id])
+    end
 
     def comments_params
         params.require(:comment).permit(:content, :user_id, :event_id)
