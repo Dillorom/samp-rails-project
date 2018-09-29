@@ -1,13 +1,3 @@
-<ul>
-    <% @event.comments.each do |comment|%>
-        <li><%= comment.user.username %> says: <strong><%= comment.content %></strong></li>
-                <% if logged_in %>
-                    <% if comment.user_id == current_user.id || current_user.admin %>
-                    <p>
-                        <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
-                        <%= link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-                    </p>
-                    <% end %>
-                <% end %>
-    <% end %>
-</ul>
+
+<p><%= @event.comments.first.user.username %> says: <strong><%= @event.comments.first.content %></strong>
+
