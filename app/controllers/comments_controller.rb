@@ -2,8 +2,8 @@ class CommentsController < ApplicationController
     before_action :set_event, only: [:index, :create, :edit, :update, :destroy]
     
     def index
-        #@comments = Comment.all
-        #@comment = @event.comments.create(comments_params)
+        @comments = @event.comments
+        render 'comments/index', :layout => false  #:json=>  @comments
     end
     def show
         @comment = Comment.find(params[:id])
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
-           redirect_to @event
+            render json: @comment
         else
            redirect_to @event, :notice => "Content can't be blank" 
         end

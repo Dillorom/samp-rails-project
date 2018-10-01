@@ -26,8 +26,9 @@
 <div id="comments">    
     <%= render 'comments/comments'%>
 </div>
+<%= link_to 'Load comments', event_comments_path(@event), :id => "load_comments" %>
 
-<a href="#" id="load_comments">Load Comments</a>
+
 <h4><%= flash[:notice] %><h4>
 <% if logged_in %>
         <%= render 'comments/form' %>

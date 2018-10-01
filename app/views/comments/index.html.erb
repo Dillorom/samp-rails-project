@@ -1,19 +1,14 @@
-<table>
+<ol>
     <% @event.comments.each do |comment|%>
-        <th><%= comment.user.username %> says:</th>
-        <tr>
-            <td> 
-                <%= comment.content %>
-                <% if logged_in %>
-                    <% if comment.user_id == current_user.id || current_user.admin %>
-                    <p>
-                        <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
+        <li><%= comment.user.username %> says:<%= comment.content %></li>
+            <% if logged_in %>
+                <% if comment.user_id == current_user.id || current_user.admin %>
+                <p>
+                    <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
 
-                        <%= link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-                    </p>
-                    <% end %>
+                    <%= link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+                </p>
                 <% end %>
-            </td>
-         </tr>
+            <% end %>
     <% end %>
- </table>
+</ol>

@@ -1,26 +1,38 @@
-
-(function(){
-   debugger
-   $("#load_comments").on("click", function(e){
-    debugger
+$(function(){
+    $("#load_comments").on("click", function(e){
     $.ajax({
-      method: "GET",
-      url: this.href
-    }).success(function(response){
-      $("div.comments").html(response)
-    }).error(function(notNeeded){
-      alert("we broke!!!!")
+        method: 'GET',
+        url: this.href
+    }).done(function(response){
+        $("#comments").html(response)
     });
-    $.get(this.href).success(function(json){
-      var $ol = $("div.comments ol")
-      $ol.html("") 
-      json.forEach(function(comment){
-        $ol.append("<li>" + comment.content + "</li>");
-      })
-    })
     e.preventDefault();
-  })
+    })
 })
+
+
+
+
+
+// $(function(){
+//     //debugger
+//    $("#load_comments").on("click", function(e){
+//         e.preventDefault();
+        
+//        $.get(this.href, function(data){
+//         var $ol = $("div.comments ol")
+//         $ol.html("")
+         
+//         data.forEach(function(comment){
+//         $ol.append("<li>" + comment.content + "</li>");
+//       }).error(function(notNeeded){
+//           alert("Error")
+//         });
+//     })
+    
+//        })
+    
+//   })
 
 
 
