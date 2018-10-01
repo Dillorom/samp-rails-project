@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
-            render json: @comment
+            redirect_to @event
+            #render json: @comment
         else
            redirect_to @event, :notice => "Content can't be blank" 
         end
