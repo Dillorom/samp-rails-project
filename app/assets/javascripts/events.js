@@ -1,41 +1,42 @@
-// (function(){
-//     $("#read_comments").click(function() {
-//         debugger
-//     }
-// })
-
-
-
-// // var comments = json.get 
-// // comments.shift()
-
-// // ul = document.querySelector("id")
-
-// // .append(comments.map(function () {
-
-// // }))
-debugger
 
 (function(){
-    $(a."#read_comments").on('click', function(e){ 
-       
-          $.get(this.href).success(function(json){
-            
-            var $ol =  $("div.comments ol")
-            
-            $ol.html("")
-            
-            // iterate over each comment in json
-            //with each comment data, append an td to the ol with the comment content
-            json.forEach(function(comment){
-                $ol.append("<li> + comment.content + </li>");
-                alert("it worked")
-            });
-           
-        });
-       
+   debugger
+   $("#load_comments").on("click", function(e){
+    debugger
+    $.ajax({
+      method: "GET",
+      url: this.href
+    }).success(function(response){
+      $("div.comments").html(response)
+    }).error(function(notNeeded){
+      alert("we broke!!!!")
+    });
+    $.get(this.href).success(function(json){
+      var $ol = $("div.comments ol")
+      $ol.html("") 
+      json.forEach(function(comment){
+        $ol.append("<li>" + comment.content + "</li>");
+      })
+    })
     e.preventDefault();
   })
 })
 
 
+
+// $(function(){
+//   $("#new_comment").on("submit", function(e){
+//     $.ajax({
+//       type: ($("input[name='_method']").val() || this.method),
+//       url: this.action,
+//       data: $(this).serialize();,
+//       success: function(response){
+//         $("#comment_content").val("");
+//         var $ol = $("div.comments ol")
+//         $ol.append(response);
+//       }
+//     });
+
+//     e.preventDefault();
+//   })
+// });
