@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
     
     def index
         @comments = @event.comments
-        render 'comments/index', :layout => false  #:json=>  @comments
+        render 'comments/index', :layout => false
+        #render :json=>  @comments, :layout => false 
     end
     def show
         @comment = Comment.find(params[:id])
