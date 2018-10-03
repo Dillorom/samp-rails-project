@@ -3,9 +3,17 @@ class CommentsController < ApplicationController
     
     def index
         @comments = @event.comments
-        render 'comments/index', :layout => false
-        #render :json=>  @comments, :layout => false 
+        #binding.pry
+        #render :json=>  @comments, :layout => false
+        respond_to do |f|
+            # f.html 
+            # f.json { render json: @comments, :layout => false}
+            f.html { render 'comments/index', :layout => false }
+            f.json { render :json=>  @comments, :layout => false}
+           
+        end
     end
+
     def show
         @comment = Comment.find(params[:id])
         redirect_to :controller => 'events', :action => 'show'
