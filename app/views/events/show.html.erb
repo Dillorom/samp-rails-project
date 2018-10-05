@@ -1,3 +1,8 @@
+<p>
+    <%= link_to "Prev", event_path(@event.prev) %>
+    <%= link_to "Next", event_path(@event.next) %>
+</p>
+
 <h1>You are viewing <%= @event.name%> event</h1>
 <p>What: <%= @event.name %></p>
 <p>When: <%= display_time(@event) %><p>
