@@ -17,18 +17,27 @@ $(function(){
 $(function(){
     $("#new_comment").on("submit", function(e){
         e.preventDefault();
-        ///error online 15 }
-        $.ajax({
-            type: ($("input[name='_method']").val() || this.method),
-            url: this.action,
-            data: $(this).serialize(), 
-            success: function(response){
-                debugger
-                $("#comment_content").val("");
+        
+        // $.ajax({
+        //     type: ($("input[name='_method']").val() || this.method),
+        //     url: this.action,
+        //     data: $(this).serialize(), 
+        //     dataType: 'json',
+        //     success: function(response){
+        //         debugger
+        //         
+        //         }
+        // });
+       
+        $.getJSON(this.action, function(data) {
+            $.each(data, function(i) {
+                $("#comments").val("");
                 var $ol = $("#comments ol")
-                $ol.append(response);
-                }
-        });
+                $ol.append("<li>" + "user.username says:" + data[i].content + "</li>");
+                
+                debugger
+                 });
+                });
         
         })
 });
