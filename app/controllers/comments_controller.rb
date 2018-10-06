@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
+            render 'comments/show', :layout => false
             redirect_to @event
             #render json: @comment
         else
