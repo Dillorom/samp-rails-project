@@ -12,7 +12,7 @@ $(function(){
             $ol.html("") 
             
             data.forEach(function(comment){
-                debugger
+                //debugger
                  
                 $ol.append("<li>" + "comment.username says: " + comment.content + "</li>");
             })
@@ -22,27 +22,28 @@ $(function(){
 })
 
 
-// $(function(){
-//     $("#new_comment").on("submit", function(e){
-//         e.preventDefault();
+$(function(){
+    $("#new_comment").on("submit", function(e){
+        e.preventDefault();
         
-//         $.ajax({
-//             type: ($("input[name='_method']").val() || this.method),
-//             url: this.action + ".json",
-//             data: $(this).serialize(),
-//             dataType: "json", 
-//             success: function(data){
-//                 debugger
-//                 $("#comments").val("");
-//                 var $ol = $("#comments ol");
-//                 data.forEach(function(comment){
-//                     $ol.append("<li>" + "username says:" + comment.content + "</li>");
-//                 })
+        $.ajax({
+            type: ($("input[name='_method']").val() || this.method),
+            url: this.action + ".json",
+            data: $(this).serialize(),
+            dataType: "json", 
+            success: function(data){
                 
-//             })
-//         });
+                $("#comments").val("");
+                var $ol = $("#comments ol");
+                data.forEach(function(comment){
+                    $ol.append("<li>" + "username says:" + comment.content + "</li>");
+                    debugger
+                })
+                
+            })
+        });
               
-//     });
-// })
+    });
+})
 
 
