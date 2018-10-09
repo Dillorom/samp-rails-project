@@ -4,16 +4,17 @@ $(function(){
         
         $.ajax({
             method: 'GET',
-            url: this.href + ".json"
-        }).done(function(response){
+            url: this.href + ".json",
+            data: $(this).serialize()
+        }).done(function(data){
             
             var $ol = $("div.comments ol")
             $ol.html("") 
             
-            response.forEach(function(comment){
-                //debugger
+            data.forEach(function(comment){
+                debugger
                  
-                $ol.append("<li>" + comment.content + "</li>");
+                $ol.append("<li>" + "comment.username says: " + comment.content + "</li>");
             })
             
         });
@@ -21,27 +22,27 @@ $(function(){
 })
 
 
-$(function(){
-    $("#new_comment").on("submit", function(e){
-        e.preventDefault();
+// $(function(){
+//     $("#new_comment").on("submit", function(e){
+//         e.preventDefault();
         
-        $.ajax({
-            type: ($("input[name='_method']").val() || this.method),
-            url: this.action + ".json",
-            data: $(this).serialize(),
-            dataType: "json", 
-            success: function(response){
-                debugger
-                $("#comments").val("");
-                var $ol = $("#comments ol");
-                response.forEach(function(comment){
-                    $ol.append("<li>" + "user.username says:" + comment.content + "</li>");
-                })
+//         $.ajax({
+//             type: ($("input[name='_method']").val() || this.method),
+//             url: this.action + ".json",
+//             data: $(this).serialize(),
+//             dataType: "json", 
+//             success: function(data){
+//                 debugger
+//                 $("#comments").val("");
+//                 var $ol = $("#comments ol");
+//                 data.forEach(function(comment){
+//                     $ol.append("<li>" + "username says:" + comment.content + "</li>");
+//                 })
                 
-            })
-        });
+//             })
+//         });
               
-    });
-})
+//     });
+// })
 
 
