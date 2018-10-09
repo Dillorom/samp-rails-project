@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
-            binding.pry
+            #binding.pry
             respond_to do |f|
                 f.html {redirect_to @event}
                 f.json {render :json => @comment}

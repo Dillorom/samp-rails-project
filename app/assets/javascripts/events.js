@@ -21,27 +21,27 @@ $(function(){
 })
 
 
-// $(function(){
-//     $("#new_comment").on("submit", function(e){
-//         e.preventDefault();
+$(function(){
+    $("#new_comment").on("submit", function(e){
+        e.preventDefault();
         
-//         $.ajax({
-//             type: ($("input[name='_method']").val() || this.method),
-//             url: this.action + ".json",
-//             data: $(this).serialize(),
-//             dataType: "json", 
-//             success: function(response){
-//                 debugger
-//                 $("#comments").val("");
-//                 var $ol = $("#comments ol");
-//                 response.forEach(function(comment){
-//                     $ol.append("<li>" + "user.username says:" + comment.content + "</li>");
-//                 })
+        $.ajax({
+            type: ($("input[name='_method']").val() || this.method),
+            url: this.action + ".json",
+            data: $(this).serialize(),
+            dataType: "json", 
+            success: function(response){
+                debugger
+                $("#comments").val("");
+                var $ol = $("#comments ol");
+                response.forEach(function(comment){
+                    $ol.append("<li>" + "user.username says:" + comment.content + "</li>");
+                })
                 
-//             })
-//         });
+            })
+        });
               
-//     });
-// })
+    });
+})
 
 

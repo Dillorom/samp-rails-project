@@ -25,6 +25,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'dotenv-rails'
 gem 'thin'
+gem 'active_model_serializers'
 #Use Jquery as a JavaScript library
 gem 'jquery-rails'
 
