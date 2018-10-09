@@ -6,8 +6,7 @@ class CommentsController < ApplicationController
         #binding.pry
         #render :json=>  @comments, :layout => false
         respond_to do |f|
-            # f.html 
-            # f.json { render json: @comments, :layout => false}
+           
             f.html { render 'comments/index', :layout => false }
             f.json { render :json=>  @comments, :layout => false}
            
@@ -23,13 +22,16 @@ class CommentsController < ApplicationController
         @comment = @event.comments.create(comments_params)
         @comment.user_id = current_user.id
         if @comment.save
+            binding.pry
             respond_to do |f|
                 f.html {redirect_to @event}
                 f.json {render :json => @comment}
+            end
             #render 'comments/show', :layout => false
             #redirect_to @event
             #render json: @comment
         else
+            
            redirect_to @event, :notice => "Content can't be blank" 
         end
     end

@@ -1,7 +1,8 @@
 <% if @event.comments.size > 0 %>
     <ol>
         <li>
-            <%= @event.comments.first.user.username %> says: <strong><%= @event.comments.first.content %></strong>
+            <%= @comment.user.username %> says: <strong><%= @comment.content %></strong>
         </li>
     </ol>
 <% end %>
+
