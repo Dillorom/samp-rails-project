@@ -1,15 +1,18 @@
 $(function(){
     $("#load_comments").on("click", function(e){
-        
         e.preventDefault();
-    $.ajax({
-        method: 'GET',
-        url: this.href
-    }).done(function(response){
-        $("#comments").html(response)
-    });
-
-    
+        $.ajax({
+            method: 'GET',
+            url: this.href
+        }).done(function(response){
+            var $ol = $("div.comments ol")
+            $ol.html("") 
+            response.forEach(function(comment){
+                debugger
+                $ol.append("<li>" + comment.content + "</li>");
+            })
+            
+        });
     })
 })
 
