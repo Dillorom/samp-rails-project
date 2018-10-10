@@ -25,24 +25,20 @@ $(function(){
 $(function(){
     $("#new_comment").on("submit", function(e){
         e.preventDefault();
-        
         $.ajax({
             type: ($("input[name='_method']").val() || this.method),
             url: this.action + ".json",
             data: $(this).serialize(),
             dataType: "json", 
             success: function(data){
-                
                 $("#comments").val("");
                 var $ol = $("#comments ol");
                 data.forEach(function(comment){
                     $ol.append("<li>" + "username says:" + comment.content + "</li>");
                     debugger
                 })
-                
             })
         });
-              
     });
 })
 
