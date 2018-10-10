@@ -31,11 +31,9 @@ $( document ).on('turbolinks:load', function(){
 
 
     $(".js-next").on("click", function() {
-        
-        var nextId = parseInt($(".js-next").attr("event-id")) + 1;
-        debugger
+        var nextId = parseInt($(".js-next").attr("event_id")) + 1;
         $.get("/events/" + nextId + ".json", function(data) {
-    
+            debugger
           $(".eventName").html("What: " + data["event"]["name"]);
           $(".eventTime").html("When: " + data["time"]);
           $(".eventLocation").html("Where: " + data["location"]);
