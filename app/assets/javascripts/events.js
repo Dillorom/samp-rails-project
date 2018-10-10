@@ -1,4 +1,9 @@
 $( document ).on('turbolinks:load', function(){
+
+    attachListeners();
+})
+
+var attachListeners = function() {
     $("#load_comments").on("click", function(e){
         e.preventDefault();
         $.ajax({
@@ -60,7 +65,7 @@ $( document ).on('turbolinks:load', function(){
         });
         return false
       });
-})
+}
 
 
 

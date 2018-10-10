@@ -1,22 +1,28 @@
 class RsvpsController < ApplicationController
-    before_action :logged_in, :authenticate_user!, :set_event
-
+    before_action :logged_in
+    before_action :authenticate_user!
     
     def index 
         @rsvps = Rsvp.all
+        @event = Event.find(params[:event_id])
     end
 
     def show
+        @event = Event.find_by_id(params[:event_id])
         @rsvp = @event.rsvps.find(params[:id]) 
         
     end
 
     def new
-        @rsvp = Rsvp.new
+        binding.pry
+       @event = Event.find_by_id(params[:event_id])
+      @rsvp = Rsvp.new
+   
     end
   
     def create
-        @rsvp = @event.rsvps.create(rsvp_params)
+        @event = Event.find_by_id(params[:event_id])
+        @rsvp = @event.rsvps.create(params[:rsvp_params])
         @rsvp.user = current_user
         if @rsvp.save
             redirect_to event_rsvp_path(@event, @rsvp) 
@@ -26,10 +32,12 @@ class RsvpsController < ApplicationController
       end
 
       def edit
+        @event = Event.find_by_id(params[:event_id])
         @rsvp = @event.rsvps.find(params[:id])
       end
     
       def update
+        @event = Event.find_by_id(params[:event_id])
         @rsvp = @event.rsvps.find(params[:id])
         if @rsvp.update_attributes rsvp_params
             redirect_to event_rsvp_path(@event, @rsvp) 
@@ -39,11 +47,6 @@ class RsvpsController < ApplicationController
       end
 
     private
-
-    def set_event
-        @event = Event.find_by_id(params[:event_id])
-    end
-    
     def rsvp_params
         params.require(:rsvp).permit(:attending)
     end

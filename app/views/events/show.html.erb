@@ -25,7 +25,7 @@
             <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
         <% end %>
     <% else %>
-        <%= button_to 'RSVP here', new_event_rsvp_path(@event, @rsvp) %>
+        <%= button_to 'RSVP here', event_rsvps_path(@event, @rsvp) %>
     <% end %>
 <% end %>
 <p><%= link_to "See who else is attending", event_rsvps_path(@event, @rsvp) %></p>
