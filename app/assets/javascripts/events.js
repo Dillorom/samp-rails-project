@@ -22,9 +22,9 @@ $( document ).on('turbolinks:load', function() {
             url: this.action + ".json",
             data: $(this).serialize(),
             success: function(data){
-                $("#comments").val("");
                 var $ol = $("#comments ol");
                 $ol.append(`<li> ${data.user.username} says: <em>${data.content}</em> </li>`);
+                $("#comment_content").val("");
             }
         });
     });
