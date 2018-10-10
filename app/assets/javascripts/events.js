@@ -33,15 +33,12 @@ $( document ).on('turbolinks:load', function(){
     $(".js-next").on("click", function() {
         var nextId = parseInt($(".js-next").attr("event_id")) + 1;
         $.get("/events/" + nextId + ".json", function(data) {
-            debugger
-          $(".eventName").html("What: " + data["event"]["name"]);
+          $(".eventName").html("What: " + data["name"]);
           $(".eventTime").html("When: " + data["time"]);
           $(".eventLocation").html("Where: " + data["location"]);
           $(".eventDetails").html("Details: " + data["details"]);
           $(".eventLink").html("Further Info: " + data["url"]);
           $(".eventImage").html("Image: " + data["image"]);
-          
-          // re-set the id to current on the link
           $(".js-next").attr("event-id", data["id"]);
         });
         return false
