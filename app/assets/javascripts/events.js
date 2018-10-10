@@ -77,7 +77,6 @@ var attachListeners = function() {
             var result = $("#attendees")
             result.html("") 
             data.forEach(function(attendee){
-                //debugger
                 result.append(
                     "<ul>" +
                         "<li>" +
