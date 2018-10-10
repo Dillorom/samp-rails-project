@@ -33,13 +33,14 @@ $( document ).on('turbolinks:load', function(){
     $(".js-next").on("click", function() {
         var nextId = parseInt($(".js-next").attr("event_id")) + 1;
         $.get("/events/" + nextId + ".json", function(data) {
-          $(".eventName").html("What: " + data["name"]);
-          $(".eventTime").html("When: " + data["time"]);
-          $(".eventLocation").html("Where: " + data["location"]);
-          $(".eventDetails").html("Details: " + data["details"]);
-          $(".eventLink").html("Further Info: " + data["url"]);
-          $(".eventImage").html("Picture: " + data["image"]);
-          $(".js-next").attr("event-id", data["id"]);
+            $(".eventHeader").html("Your are viewing " + data["name"]);
+            $(".eventName").html("What: " + data["name"]);
+            $(".eventTime").html("When: " + data["time"]);
+            $(".eventLocation").html("Where: " + data["location"]);
+            $(".eventDetails").html("Details: " + data["details"]);
+            $(".eventLink").html("Further Info: " + data["url"]);
+            $(".eventImage").html("Picture: " + data["image"]);
+            $(".js-next").attr("event-id", data["id"]);
         });
         return false
       });
@@ -48,6 +49,7 @@ $( document ).on('turbolinks:load', function(){
       $(".js-prev").on("click", function() {
         var prevId = parseInt($(".js-prev").attr("event_id")) - 1;
         $.get("/events/" + prevId + ".json", function(data) {
+            $(".eventHeader").html("Your are viewing " + data["name"]);
             $(".eventName").html("What: " + data["name"]);
             $(".eventTime").html("When: " + data["time"]);
             $(".eventLocation").html("Where: " + data["location"]);
