@@ -28,9 +28,46 @@ $( document ).on('turbolinks:load', function(){
             }
         });
     });
+
+
+    $(".js-next").on("click", function() {
+        
+        var nextId = parseInt($(".js-next").attr("event-id")) + 1;
+        debugger
+        $.get("/events/" + nextId + ".json", function(data) {
+    
+          $(".eventName").html("What: " + data["event"]["name"]);
+          $(".eventTime").html("When: " + data["time"]);
+          $(".eventLocation").html("Where: " + data["location"]);
+          $(".eventDetails").html("Details: " + data["details"]);
+          $(".eventLink").html("Further Info: " + data["url"]);
+          $(".eventImage").html("Image: " + data["image"]);
+          
+          // re-set the id to current on the link
+          $(".js-next").attr("event-id", data["id"]);
+        });
+        return false
+      });
 })
 
 
+
+
+
+//   $(".js-previous").on("click", function() {
+//     $(".editLink").html('');
+//     var nextId = parseInt($(".js-next").attr("review-id")) - 1;
+//     $.get("/reviews/" + nextId + ".json", function(data) {
+
+//       $(".movieTitle").html("Movie Title: " + data["movie"]["title"]);
+//       $(".reviewTitle").html("Review Title: " + data["title"]);
+//       $(".reviewContent").html("Review Content: " + data["content"]);
+//       $(".reviewRating").html("Rating: " + data["rating"]);
+//       // re-set the id to current on the link
+//       $(".js-next").attr("review-id", data["id"]);
+//     });
+//     return false
+//   });
 
 
 

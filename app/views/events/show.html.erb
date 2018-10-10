@@ -1,15 +1,16 @@
 <p>
-    <%= link_to "Prev", event_path(@event.prev) %>
-    <%= link_to "Next", event_path(@event.next) %>
+    <a href="#" class="js-prev" event_id="<%= @event.id %>">Previous Event</a> 
+    <a href="#" class="js-next" event_id="<%= @event.id %>">Next Event</a> 
 </p>
 
+
 <h1>You are viewing <%= @event.name%> event</h1>
-<p>What: <%= @event.name %></p>
-<p>When: <%= display_time(@event) %><p>
-<p>Where: <%= @event.location %></p>
-<p>Details: <%= @event.details %></p>
-<p>Further info: <%= @event.url %></p>
-<p><% @event.image %></p>
+<p class="eventName">What: <%= @event.name %></p>
+<p class="eventTime">When: <%= display_time(@event) %><p>
+<p class="eventLocation">Where: <%= @event.location %></p>
+<p class="eventDetails">Details: <%= @event.details %></p>
+<p class="eventLink">Further info: <%= @event.url %></p>
+<p class="eventImage"><% @event.image %></p>
 
 
 <% if logged_in && current_user.admin %>
