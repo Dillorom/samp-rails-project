@@ -1,4 +1,4 @@
-$( document ).on('turbolinks:load', function() {
+$( document ).on('turbolinks:load', function(){
     $("#load_comments").on("click", function(e){
         e.preventDefault();
         $.ajax({
