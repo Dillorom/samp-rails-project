@@ -65,6 +65,23 @@ var attachListeners = function() {
         });
         return false
       });
+
+
+      $("#attendees").on("click", function(e){
+        e.preventDefault();
+        $.ajax({
+            method: 'GET',
+            url: this.href + ".json",
+            data: $(this).serialize()
+        }).done(function(data){
+            var result = $("#attendees")
+            result.html("") 
+            data.forEach(function(attendee){
+                debugger
+                result.append(attendee.name);
+            })
+        });
+      })
 }
 
 

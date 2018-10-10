@@ -5,6 +5,10 @@ class RsvpsController < ApplicationController
     def index 
         @rsvps = Rsvp.all
         @event = Event.find(params[:event_id])
+        respond_to do |f|
+            f.html { render 'rsvps/index', :layout => false }
+            f.json { render :json=>  @rsvps, :layout => false}
+        end
     end
 
     def show
@@ -13,12 +17,12 @@ class RsvpsController < ApplicationController
         
     end
 
-    def new
-        binding.pry
-       @event = Event.find_by_id(params[:event_id])
-      @rsvp = Rsvp.new
+    # def new
+    #     #binding.pry
+    #    @event = Event.find_by_id(params[:event_id])
+    #   @rsvp = Rsvp.new
    
-    end
+    # end
   
     def create
         @event = Event.find_by_id(params[:event_id])
