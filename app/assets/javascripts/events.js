@@ -77,8 +77,14 @@ var attachListeners = function() {
             var result = $("#attendees")
             result.html("") 
             data.forEach(function(attendee){
-                debugger
-                result.append(attendee.name);
+                //debugger
+                result.append(
+                    "<ul>" +
+                        "<li>" +
+                         attendee.user.username +
+                        "</li>" +
+                    "</ul>"
+                );
             })
         });
       })
