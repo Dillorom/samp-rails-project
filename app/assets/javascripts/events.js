@@ -67,26 +67,21 @@ var attachListeners = function() {
       });
 
 
-    //   $("#attendees").on("click", function(e){
-    //     e.preventDefault();
-    //     $.ajax({
-    //         method: 'GET',
-    //         url: this.href + ".json",
-    //         data: $(this).serialize()
-    //     }).done(function(data){
-    //         var result = $("#attendees")
-    //         result.html("") 
-    //         data.forEach(function(attendee){
-    //             result.append(
-    //                 "<ul>" +
-    //                     "<li>" +
-    //                      attendee.user.username +
-    //                     "</li>" +
-    //                 "</ul>"
-    //             );
-    //         })
-    //     });
-    //   })
+      $("#load_attendees").on("click", function(e){
+        e.preventDefault();
+        $.ajax({
+            method: 'GET',
+            url: this.href + ".json",
+            data: $(this).serialize()
+        }).done(function(data){
+                var $ul = $("#attendees ul")
+                $ul.html("") 
+                data.forEach(function(attendee){
+                    $ul.append(`<li> ${attendee.user.username} </li>`);
+                })
+            })
+        });
+    
 }
 
 
