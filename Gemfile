@@ -29,6 +29,7 @@ gem 'active_model_serializers'
 #Use Jquery as a JavaScript library
 gem 'jquery-rails'
 
+
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views

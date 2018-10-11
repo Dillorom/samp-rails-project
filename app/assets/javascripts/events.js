@@ -29,11 +29,31 @@ var attachListeners = function() {
             success: function(data){
                 var $ol = $("#comments ol");
                 //make comment object with prototype method and append.comment
+                // var comment = new Comment(data);
+                // var commentLi = comment.renderLi();
+                // $("#comments").append(comment.renderComment())
+                // $("#new_comment").each(function(){
+                //     this.reset();
+                //   });
                 $ol.append(`<li> ${data.user.username} says: <em>${data.content}</em> </li>`);
                 $("#comment_content").val("");
             }
         });
     });
+
+
+    // function Comment(attributes) {
+    //     this.content = attributes["content"];
+    //     this.user = attributes["user"];
+    //     this.user.username = attributes["user"]["username"];
+    // }
+    // Comment.templateSource = $("#comment_template").html()
+    // Comment.template = Handlebars.compile(Comment.templateSource)
+    // Comment.prototype.renderComment = function() {
+    // //   $("#commentContent").text(this["content"]);
+    // //   $("#commentUser").text(this["user"]);
+    // //   $("#commentUserUsername").text(this["user"]["username"]);
+    // }
 
 
     $(".js-next").on("click", function() {
@@ -76,12 +96,10 @@ var attachListeners = function() {
             url: this.href + ".json",
             data: $(this).serialize()
         }).done(function(data){
-            //debugger
                 var $ul = $("#attendees ul")
                 $ul.html("") 
                 data.forEach(function(attendee){
                     $ul.append("<li>" + attendee.user.username + "</li>");
-                    //(`<li> ${attendee.user.username} </li>`) what is the difference btw interpolating and just giving attendee?
                 })
             })
         });
