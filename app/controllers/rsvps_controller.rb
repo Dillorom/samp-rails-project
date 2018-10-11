@@ -3,8 +3,8 @@ class RsvpsController < ApplicationController
     before_action :authenticate_user!
     
     def index 
-        @rsvps = Rsvp.all
         @event = Event.find(params[:event_id])
+        @rsvps = @event.rsvps
         respond_to do |f|
             f.html { render 'rsvps/index', :layout => false }
             f.json { render :json=>  @rsvps, :layout => false}

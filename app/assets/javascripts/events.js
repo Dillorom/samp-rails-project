@@ -28,6 +28,7 @@ var attachListeners = function() {
             data: $(this).serialize(),
             success: function(data){
                 var $ol = $("#comments ol");
+                //make comment object with prototype method and append.comment
                 $ol.append(`<li> ${data.user.username} says: <em>${data.content}</em> </li>`);
                 $("#comment_content").val("");
             }
@@ -69,11 +70,13 @@ var attachListeners = function() {
 
       $("#load_attendees").on("click", function(e){
         e.preventDefault();
+        
         $.ajax({
             method: 'GET',
             url: this.href + ".json",
             data: $(this).serialize()
         }).done(function(data){
+            //debugger
                 var $ul = $("#attendees ul")
                 $ul.html("") 
                 data.forEach(function(attendee){

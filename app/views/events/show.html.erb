@@ -25,7 +25,8 @@
             <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
         <% end %>
     <% else %>
-        <p><%= link_to 'RSVP here', new_event_rsvp_path(@event), :id => "rsvp_button" %></p>
+    <p><%= link_to 'RSVP here', new_event_rsvp_path(@event), :id => "rsvp_button" %></p>
+        
     <% end %>
 <% end %>
 
