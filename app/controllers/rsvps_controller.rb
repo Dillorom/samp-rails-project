@@ -17,12 +17,11 @@ class RsvpsController < ApplicationController
         
     end
 
-    # def new
-    #     #binding.pry
-    #    @event = Event.find_by_id(params[:event_id])
-    #   @rsvp = Rsvp.new
-   
-    # end
+    def new
+        #binding.pry
+        @event = Event.find_by_id(params[:event_id])
+        @rsvp = Rsvp.new
+    end
   
     def create
         @event = Event.find_by_id(params[:event_id])
