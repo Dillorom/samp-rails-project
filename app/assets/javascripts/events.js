@@ -77,9 +77,8 @@ var attachListeners = function() {
                 var $ul = $("#attendees ul")
                 $ul.html("") 
                 data.forEach(function(attendee){
-                    //debugger
                     $ul.append("<li>" + attendee.user.username + "</li>");
-                    //(`<li> ${attendee.user.username} </li>`)
+                    //(`<li> ${attendee.user.username} </li>`) what is the difference btw interpolating and just giving attendee?
                 })
             })
         });
