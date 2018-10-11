@@ -1,16 +1,12 @@
-<table>
+<ol>
     <% @event.rsvps.each do |rsvp|%>
-        <th><%= link_to rsvp.user.username, user_path(current_user) %> is Going to <%= link_to @event.name, event_path(@event)%></th>
-        <tr>
-            <td> 
-                <% if logged_in %>
-                    <% if rsvp.user_id == current_user.id || current_user.admin %>
-                    <p>
-                        <%= link_to "Edit your response", edit_event_rsvp_path(@event, rsvp)%> 
-                    </p>
-                    <% end %>
+        <li>
+            <%= link_to rsvp.user.username, user_path(current_user) %> 
+            <% if logged_in %>
+                <% if rsvp.user_id == current_user.id || current_user.admin %>
+                    <%= link_to "Edit your response", edit_event_rsvp_path(@event, rsvp)%>
                 <% end %>
-            </td>
-         </tr>
+            <% end %>
+        </li>
     <% end %>
- </table>
+</ol>
