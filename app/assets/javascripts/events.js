@@ -16,6 +16,9 @@ var attachListeners = function() {
             data.forEach(function(comment){
                 $ol.append(`<li> ${comment.user.username} says: <em>${comment.content}</em> </li>`);
             })
+        })
+        .error(function(error){
+            alert("There was an error!")
         });
     })
 
@@ -31,6 +34,9 @@ var attachListeners = function() {
                 $("#comments").append(comment.renderComment())
                 $("#sub").removeAttr('disabled') //to clean comment box from the last comment
             }
+        })
+        .error(function(error){
+            alert("There was an error!")
         });
     });
 
@@ -43,7 +49,7 @@ var attachListeners = function() {
     
     Comment.prototype.renderComment = function() {
         var $ol = $("#comments ol");
-        $ol.append("<li>"+ this.user.username + "says: " +  "<em>" + this.content + "</em> </li>");
+        $ol.append("<li>"+ this.user.username + " says: " +  "<em>" + this.content + "</em> </li>");
         $("#comment_content").val("");
     }
 
@@ -60,6 +66,7 @@ var attachListeners = function() {
             $(".eventImage").html("Picture: " + data["image"]);
             $(".js-next").attr("event-id", data["id"]);
         });
+        
         return false
       });
 
@@ -93,8 +100,11 @@ var attachListeners = function() {
                 data.forEach(function(attendee){
                     $ul.append("<li>" + attendee.user.username + "</li>");
                 })
-            })
+        })
+        .error(function(error){
+            alert("There was an error!")
         });
+    });
     
 }
 
