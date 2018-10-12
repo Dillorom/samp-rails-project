@@ -15,5 +15,5 @@
 
 <%= form_for([@event, @comment]) do |f| %>
     <p><%= f.text_area :content, placeholder: "Comment" %></p>
-    <p><%= f.submit%></p>
+    <p><%= f.submit 'Submit', id: "sub" %></p>
 <% end %>

@@ -29,6 +29,7 @@ var attachListeners = function() {
             success: function(data){
                 var comment = new Comment(data);
                 $("#comments").append(comment.renderComment())
+                $("#sub").removeAttr('disabled') //to clean comment box from the last comment
             }
         });
     });
