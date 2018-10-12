@@ -27,33 +27,24 @@ var attachListeners = function() {
             url: this.action + ".json",
             data: $(this).serialize(),
             success: function(data){
-                var $ol = $("#comments ol");
-                //make comment object with prototype method and append.comment
-                // var comment = new Comment(data);
-                // var commentLi = comment.renderLi();
-                // $("#comments").append(comment.renderComment())
-                // $("#new_comment").each(function(){
-                //     this.reset();
-                //   });
-                $ol.append(`<li> ${data.user.username} says: <em>${data.content}</em> </li>`);
-                $("#comment_content").val("");
+                var comment = new Comment(data);
+                $("#comments").append(comment.renderComment())
             }
         });
     });
 
 
-    // function Comment(attributes) {
-    //     this.content = attributes["content"];
-    //     this.user = attributes["user"];
-    //     this.user.username = attributes["user"]["username"];
-    // }
-    // Comment.templateSource = $("#comment_template").html()
-    // Comment.template = Handlebars.compile(Comment.templateSource)
-    // Comment.prototype.renderComment = function() {
-    // //   $("#commentContent").text(this["content"]);
-    // //   $("#commentUser").text(this["user"]);
-    // //   $("#commentUserUsername").text(this["user"]["username"]);
-    // }
+    function Comment(attributes) {
+        this.content = attributes["content"];
+        this.user = attributes["user"];
+        this.user.username = attributes["user"]["username"]
+    }
+    
+    Comment.prototype.renderComment = function() {
+        var $ol = $("#comments ol");
+        $ol.append("<li>"+ this.user.username + "says: " +  "<em>" + this.content + "</em> </li>");
+        $("#comment_content").val("");
+    }
 
 
     $(".js-next").on("click", function() {
