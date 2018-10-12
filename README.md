@@ -20,3 +20,4 @@ Bug reports and pull requests are welcome at https://github.com/Dillorom/seattle
 
 LICENSE
 This project has been licensed under the MIT open source license: 
+https://github.com/Dillorom/seattle-kids-events/blob/rails-js/LICENSE.MD
