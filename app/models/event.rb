@@ -41,7 +41,6 @@ class Event < ActiveRecord::Base
   private 
   
   def event_ids_by_name
-    #@event_ids || = 
     Event.order(name: :asc).pluck(:id)
   end
 
