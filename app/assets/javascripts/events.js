@@ -11,7 +11,7 @@ var attachListeners = function() {
             url: this.href + ".json",
             data: $(this).serialize()
         }).done(function(data){
-            var $ol = $("#comments ol")
+            const $ol = $("#comments ol")
             $ol.html("") 
             data.forEach(function(comment){
                 $ol.append(`<li> ${comment.user.username} says: <em>${comment.content}</em> </li>`);
@@ -30,7 +30,7 @@ var attachListeners = function() {
             url: this.action + ".json",
             data: $(this).serialize(),
             success: function(data){
-                var comment = new Comment(data);
+                const comment = new Comment(data);
                 $("#comments").append(comment.renderComment())
                 $("#sub").removeAttr('disabled') //to clean comment box from the last comment
             }
@@ -48,14 +48,14 @@ var attachListeners = function() {
     }
     
     Comment.prototype.renderComment = function() {
-        var $ol = $("#comments ol");
+        const $ol = $("#comments ol");
         $ol.append("<li>"+ this.user.username + " says: " +  "<em>" + this.content + "</em> </li>");
         $("#comment_content").val("");
     }
 
 
     $(".js-next").on("click", function() {
-        var nextId = parseInt($(".js-next").attr("event_id")) + 1;
+        const nextId = parseInt($(".js-next").attr("event_id")) + 1;
         $.get("/events/" + nextId + ".json", function(data) {
             $(".eventHeader").html("Your are viewing " + data["name"]);
             $(".eventName").html("What: " + data["name"]);
@@ -72,7 +72,7 @@ var attachListeners = function() {
 
 
       $(".js-prev").on("click", function() {
-        var prevId = parseInt($(".js-prev").attr("event_id")) - 1;
+        const prevId = parseInt($(".js-prev").attr("event_id")) - 1;
         $.get("/events/" + prevId + ".json", function(data) {
             $(".eventHeader").html("Your are viewing " + data["name"]);
             $(".eventName").html("What: " + data["name"]);
@@ -95,7 +95,7 @@ var attachListeners = function() {
             url: this.href + ".json",
             data: $(this).serialize()
         }).done(function(data){
-                var $ul = $("#attendees ul")
+                const $ul = $("#attendees ul")
                 $ul.html("") 
                 data.forEach(function(attendee){
                     $ul.append("<li>" + attendee.user.username + "</li>");
