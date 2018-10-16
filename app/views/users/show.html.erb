@@ -21,7 +21,7 @@
 <% if @user.attending_events.size == 0 %>
    <h2>Your are not attending any events</h2>
   <% else @user.attending_events.size > 0 %>
-    <h2>Events You Are Attending </h2>
+   <%= link_to "Events You Are Attending", user_path(@user), :id => "load_rsvps" %>
 <% end %>
 
 <% @user.attending_events.each do |event| %>

@@ -12,7 +12,7 @@ var attachListeners = function() {
         $.ajax({
             method: 'GET',
             url: this.href + ".json",
-            data: $(this).serialize()
+            //data: $(this).serialize()
         }).done(function(data){
             const $ol = $("#comments ol")
             $ol.html("") 
