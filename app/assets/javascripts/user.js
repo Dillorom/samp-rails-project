@@ -11,7 +11,7 @@ var attachUserListeners = function() {
             method: "GET",
             url: this.href + ".json"
         }).done(function(data){
-            debugger    
+            //debugger    
             })
     })
 }
