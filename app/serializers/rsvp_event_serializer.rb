@@ -1,3 +1,3 @@
 class RsvpEventSerializer < ActiveModel::Serializer
-  attributes :event_name
+  attributes :name
 end
