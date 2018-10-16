@@ -44,21 +44,38 @@ var attachListeners = function() {
         });
     });
 
+    // old way of creating an object
+    // function Comment(attributes) {
+    //     this.content = attributes["content"];
+    //     this.user = attributes["user"];
+    //     this.user.username = attributes["user"]["username"]
+    // }
+    
+     //Sets a method on object prototype to save memory
 
-    function Comment(attributes) {
-        this.content = attributes["content"];
-        this.user = attributes["user"];
-        this.user.username = attributes["user"]["username"]
+    // Comment.prototype.renderComment = function() {
+    //     const $ol = $("#comments ol");
+    //     $ol.append("<li>"+ this.user.username + " says: " +  "<em>" + this.content + "</em> </li>");
+    //     $("#comment_content").val("");
+    // }
+
+    //ES6 way of declaring an object using class constructor
+    class Comment {
+        constructor(attributes){
+            this.content = attributes["content"];
+            this.user = attributes["user"];
+            this.user.username = attributes["user"]["username"]
+        }
+        //Sets a method on object prototype to save memory
+        renderComment() {
+            const $ol = $("#comments ol");
+            $ol.append("<li>"+ this.user.username + " says: " +  "<em>" + this.content + "</em> </li>");
+            $("#comment_content").val("");
+        }
+        
     }
     
-    //Sets a method on object prototype to save memory
-
-    Comment.prototype.renderComment = function() {
-        const $ol = $("#comments ol");
-        $ol.append("<li>"+ this.user.username + " says: " +  "<em>" + this.content + "</em> </li>");
-        $("#comment_content").val("");
-    }
-
+    
     //Loads the next event page through AJAX
 
     $(".js-next").on("click", function() {
