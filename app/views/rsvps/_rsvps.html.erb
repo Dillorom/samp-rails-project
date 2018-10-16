@@ -1,0 +1,6 @@
+<% if @event.comments.size > 0 %>
+    <p> Attendees: </p>
+    <ul>
+        <li><%=  @event.rsvps.first.user.username %></li>
+    </ul>
+<% end %>

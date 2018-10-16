@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.4.4'
+ruby '2.3.6' #'2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
@@ -24,8 +24,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'dotenv-rails'
-gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'thin'
+gem 'active_model_serializers'
+#Use Jquery as a JavaScript library
+gem 'jquery-rails'
+
 
 # gem 'mini_racer', platforms: :ruby
 

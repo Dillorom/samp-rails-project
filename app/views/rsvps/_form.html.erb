@@ -1,10 +1,10 @@
-  <%= form_for([@event, @rsvp]) do |f| %>
-    <%= f.hidden_field :event_id %>
-    <p>
-      <%= f.label "Attending" %>  
-      <%= f.radio_button :attending, true %>
-      <%= f.label "Not Attending" %> 
-      <%= f.radio_button :attending, false %>
-    </p>
-    <p><%= f.submit %></p>
+<%= form_for([@event, @rsvp]) do |f| %>
+  <%= f.hidden_field :event_id %>
+  <p>
+    <%= f.label "Attending" %>  
+    <%= f.radio_button :attending, true %>
+    <%= f.label "Not Attending" %> 
+    <%= f.radio_button :attending, false %>
+  </p>
+  <p><%= f.submit %></p>
 <% end %>

@@ -12,6 +12,10 @@ class EventsController < ApplicationController
     if logged_in
       @comment.user_id = current_user.id
     end
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @event, status: 200}
+    end
   end
 
   def new

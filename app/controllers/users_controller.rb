@@ -10,8 +10,13 @@ class UsersController < ApplicationController
     end
 
     def show
-        #binding.pry
         @user = User.find(params[:id])
+        #render json: @user, status: 200
+        respond_to do |f|
+            f.html { render 'show' }
+            f.json { render :json=>  @user}
+        end
+
     end
     
     def create 
@@ -37,11 +42,11 @@ class UsersController < ApplicationController
         end
     end
 
-    # def destroy
-    #     @user = User.find(params[:id])
-    #     @user.delete
-    #     redirect_to root_path
-    # end
+    def destroy
+        @user = User.find(params[:id])
+        @user.delete
+        redirect_to root_path
+    end
 
     private
 

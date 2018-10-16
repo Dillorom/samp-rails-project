@@ -1,10 +1,16 @@
-<h1>You are viewing <%= @event.name%> event</h1>
-<p>What: <%= @event.name %></p>
-<p>When: <%= display_time(@event) %><p>
-<p>Where: <%= @event.location %></p>
-<p>Details: <%= @event.details %></p>
-<p>Further info: <%= @event.url %></p>
-<p><% @event.image %></p>
+<p>
+    <a href="#" class="js-prev" event_id="<%= @event.id %>">Previous Event</a> 
+    <a href="#" class="js-next" event_id="<%= @event.id %>">Next Event</a> 
+</p>
+
+
+<h1 class="eventHeader">You are viewing <%= @event.name%> event</h1>
+<p class="eventName">What: <%= @event.name %></p>
+<p class="eventTime">When: <%= display_time(@event) %><p>
+<p class="eventLocation">Where: <%= @event.location %></p>
+<p class="eventDetails">Details: <%= @event.details %></p>
+<p class="eventLink">Further info: <%= @event.url %></p>
+<p class="eventImage"><% @event.image %></p>
 
 
 <% if logged_in && current_user.admin %>
@@ -19,35 +25,25 @@
             <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
         <% end %>
     <% else %>
-        <%= link_to 'RSVP here', new_event_rsvp_path(@event, @rsvp) %>
+        <p><%= link_to 'RSVP here', new_event_rsvp_path(@event) %></p>
     <% end %>
 <% end %>
-<p><%= link_to "See who else is attending", event_rsvps_path(@event, @rsvp) %></p>
 
-<h3>What people say about the event?</h3>
-<p><%= link_to 'Read all comments', event_comments_path(@event) %>
-<table>
-    <% @event.comments.each do |comment|%>
-        <th><%= comment.user.username %> says:</th>
-        <tr>
-            <td> 
-                <%= comment.content %>
-                <% if logged_in %>
-                    <% if comment.user_id == current_user.id || current_user.admin %>
-                    <p>
-                        <%= link_to "Edit", edit_event_comment_path(@event, comment)%> 
+<div id="attendees">
+    <%= render 'rsvps/rsvps' %>
+</div>
 
-                        <%= link_to "Delete", event_comment_path(@event, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-                    </p>
-                    <% end %>
-                <% end %>
-            </td>
-         </tr>
-    <% end %>
- </table>
+<%= link_to "See all attendees", event_rsvps_path(@event), :id => "load_attendees" %>
+
+<div id="comments">    
+    <%= render 'comments/comments'%>
+</div>
+
+<%= link_to 'Load all comments', event_comments_path(@event), :id => "load_comments" %>
+
+
 <h4><%= flash[:notice] %><h4>
 <% if logged_in %>
-    <p>Aks question or give advice</p>
         <%= render 'comments/form' %>
  <% else %>
     <p><%= link_to "Log in", login_path %> to comment </p>
