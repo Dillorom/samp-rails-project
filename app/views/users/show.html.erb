@@ -23,6 +23,7 @@
   <% else @user.attending_events.size > 0 %>
    <%= link_to "Attending events: ", user_path(@user), :id => "load_rsvps" %>
 <% end %>
+
 <div id="attending_events">
         <ul></ul>
 </div>
