@@ -1,11 +1,13 @@
-<% if @event.comments.size > 0 %>
+
 <p>Comments: </p>
     <ol>
+    <%if @event.comments.size > 0 %>
         <li>
             <%= @event.comments.first.user.username %> says: <em><%= @event.comments.first.content %></em>
         </li>
+    <% end %>
     </ol>
-<% end %>
+
 
 
 
