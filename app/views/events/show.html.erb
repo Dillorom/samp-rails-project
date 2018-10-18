@@ -13,27 +13,34 @@
 <p class="eventImage"><% @event.image %></p>
 
 
-<% if logged_in && current_user.admin %>
-    <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
-<% end %>
-<% if logged_in %>
-
-    <% if @rsvp%>
-        <% if @rsvp.attending == true %>
-            <p>Your are going to this event. <%= link_to "Edit your response", edit_event_rsvp_path(@event, @rsvp) %></p>
-        <% else %> 
-            <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
-        <% end %>
-    <% else %>
-        <p><%= link_to 'RSVP here', new_event_rsvp_path(@event) %></p>
-    <% end %>
-<% end %>
 
 <div id="attendees">
     <%= render 'rsvps/rsvps' %>
 </div>
 
-<%= link_to "See all attendees", event_rsvps_path(@event), :id => "load_attendees" %>
+<% if @event.attending_users.size == 0 %>
+   <h4>No RSVPs yet</h4>
+   <p><%= link_to 'RSVP here', new_event_rsvp_path(@event) %></p>
+<% else @event.attending_users.size > 0 %>
+    <%= link_to "See all attendees", event_rsvps_path(@event), :id => "load_attendees" %>
+    <% if logged_in && current_user.admin %>
+        <p><%= link_to 'Edit', edit_event_path(@event) %> <%= link_to "Delete", @event, method: :delete, data: { confirm: "Really?" } %></p>
+    <% end %>
+
+    <% if logged_in %>
+        <% if @event.attending_users.find do |user| %>
+            <% if user == current_user %>
+                <p>Your are going to this event. <%= link_to "Edit your response", edit_event_rsvp_path(@event, @rsvp) %></p>
+            <% end %>
+            <% end %>
+        <% elsif @event.attending_users.find do |user| %> 
+            <% if !user == current_user %>
+                <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
+            <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>
 
 <div id="comments">    
     <%= render 'comments/comments'%>
