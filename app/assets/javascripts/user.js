@@ -18,6 +18,7 @@ var attachUserListeners = function() {
             const sorted_data = new_data.sort();
             sorted_data.forEach(function(event){
                 $ul.append(`<li> ${event} </li> `)
+                //need to give link to events <a href=${events/event.id}>
             })
         })
     })
