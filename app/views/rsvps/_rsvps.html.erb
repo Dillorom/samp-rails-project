@@ -1,6 +1,6 @@
+<p> Attendees: </p>
+<ul>
 <% if @event.rsvps.size > 0 %>
-    <p> Attendees: </p>
-    <ul>
-        <li><%=  @event.rsvps.first.user.username %></li>
-    </ul>
+    <li><%=  @event.rsvps.first.user.username %></li>
 <% end %>
+</ul>
