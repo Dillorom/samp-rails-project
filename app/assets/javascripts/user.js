@@ -13,8 +13,6 @@ var attachUserListeners = function() {
         }).done(function(data){
             const $ul = $("#attending_events ul") 
             $ul.html("") 
-            // const new_data = data.attending_events.map(function(event){
-                // return event.name})
             data.attending_events.sort(function(a, b) {
                 var nameA = a.name.toUpperCase(); // ignore upper and lowercase
                 var nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -24,8 +22,6 @@ var attachUserListeners = function() {
                 if (nameA > nameB) {
                   return 1;
                 }
-              
-                // names must be equal
                 return 0;
               });
             data.attending_events.forEach(function(event){
