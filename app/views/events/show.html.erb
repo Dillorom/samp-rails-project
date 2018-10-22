@@ -34,7 +34,7 @@
             <% end %>
             <% end %>
         <% elsif @event.attending_users.find do |user| %> 
-            <% if !user == current_user %>
+            <% if user == !current_user %>
                 <p> You are not attending this event. Change your mind? <%= link_to 'RSVP here', edit_event_rsvp_path(@event, @rsvp) %> </p>
             <% end %>
             <% end %>

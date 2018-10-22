@@ -13,13 +13,27 @@ var attachUserListeners = function() {
         }).done(function(data){
             const $ul = $("#attending_events ul") 
             $ul.html("") 
-            const new_data = data.attending_events.map(function(event){
-                return event.name})
-            const sorted_data = new_data.sort();
-            sorted_data.forEach(function(event){
-                $ul.append(`<li> ${event} </li> `)
-                //need to give link to events <a href=${events/event.id}>
+            // const new_data = data.attending_events.map(function(event){
+                // return event.name})
+            data.attending_events.sort(function(a, b) {
+                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+              
+                // names must be equal
+                return 0;
+              });
+            data.attending_events.forEach(function(event){
+                $ul.append(`<li> ${event.name} </li> `)
+                //need to give links to events <a href=${events/event.id}>
             })
         })
     })
 }
+
+
